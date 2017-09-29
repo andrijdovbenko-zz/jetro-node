@@ -1,0 +1,53 @@
+#addPost input,
+#addPost textarea,
+#addPortfolioItem input,
+#addPortfolioItem textarea {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#form_content input[type="checkbox"] {
+    display: inline-block;
+    width: 15px;
+    margin-right: 10px;
+}
+
+article h2 {
+    text-align: center;
+    color: #F15F36;
+    text-decoration: underline;
+}
+
+td img.icon {
+    width: 35px;
+}
+
+nav.admin-nav {
+    padding-top: 4px;
+    text-align: center;
+    font-family: BebasNeue;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid #F15F36;
+    border-radius: 10px;
+    background-color: rgba(241, 95, 54, 0.4);
+}
+
+nav.admin-nav a {
+    margin-left: 27px;
+    color: white;
+}
+
+nav.admin-nav a:hover {
+    color: #F15F36;
+}
+
+nav.admin-nav a.active {
+    color: #F15F36;
+}
+
+nav.admin-nav a:first-child {
+    margin-left: 0;
+}
+

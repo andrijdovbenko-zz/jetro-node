@@ -1,0 +1,52 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/blog.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/aside.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/owl.carousel/owl.carousel.css" rel="stylesheet" >') %>
+<% block('stylesheets', '<link href="/css/owl.carousel/owl.theme.default.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/slider.js"></script>') %>
+<% block('scripts', '<script src="/js/owl.carousel.js"></script>') %>
+<% block('scripts', '<script src="/js/add-comment.js"></script>') %>
+
+
+<main>
+    <%- partial('partials/title', {title: post.header}) %>
+    <div class="container">
+        <div class="col-md-9 co-sm-12">
+            <div class="row">
+                <section>
+                    <% if (post.post_type === "image"){ %>
+                    <%- partial('post_templates/image', {post: post}) %>
+                    <% } else if (post.post_type === "quote"){ %>
+                    <%- partial('post_templates/quote', {post: post}) %>
+                    <% } else if (post.post_type === "video"){ %>
+                    <%- partial('post_templates/video', {post: post}) %>
+                    <% } else if (post.post_type === "link"){ %>
+                    <%- partial('post_templates/link', {post: post}) %>
+                    <% } else if (post.post_type === "gallery"){ %>
+                    <%- partial('post_templates/gallery', {post: post}) %>
+                    <% } %>
+                    <div class="comments">
+                        <h3>Comments:</h3>
+                        <% if(isLogged) { %>
+                        <form name="comment_form" id="comment_form">
+                            <textarea placeholder="COMMENT..." required name="text"></textarea>
+                            <input type="submit" value="add comment">
+                        </form>
+                        <% } %>
+                        <% for (var i = 0; i < post.comments.length; i++ ) { %>
+                        <div class="single-comment">
+                            <h4><%= post.comments[i].sender %></h4>
+                            <p><span>date: </span><%= post.comments[i].date %></p>
+                            <p><%= post.comments[i].text %></p>
+                        </div>
+                        <% } %>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <%- partial('partials/aside') %>
+        </div>
+    </div>
+</main>

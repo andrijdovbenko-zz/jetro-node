@@ -1,0 +1,209 @@
+@font-face {
+    font-family: BebasNeue;
+    src: url(../fonts/BebasNeueRegular.ttf);
+}
+
+@font-face {
+    font-family: HelveticaNeueCyr;
+    src: url(../fonts/HelveticaNeueCyr-Medium.otf);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: BebasNeue;
+}
+
+/*HEADER*/
+
+header {
+    min-height: 75px;
+}
+
+header h1 {
+    float: left;
+    font-size: 45px;
+    font-weight: bold;
+    margin-top: 12px;
+    text-transform: uppercase;
+}
+
+header h1 a:hover {
+    text-decoration: none;
+}
+
+header h1 span:first-child {
+    color: #F15F36;
+}
+
+header h1 span:last-child {
+    color: #F5B19C;
+}
+
+header nav {
+    float: right;
+    font-family: BebasNeue;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 26px;
+    text-transform: uppercase;
+}
+
+header nav a {
+    margin-left: 27px;
+    color: #BDBDBD;
+}
+
+header nav a:hover {
+    color: #F15F36;
+}
+
+header nav a.active {
+    color: #F15F36;
+}
+
+header nav a:first-child {
+    margin-left: 0;
+}
+
+header nav a.loginButton {
+    background-color: #F15F36;
+    border: 2px solid #F15F36;
+    color: white;
+    padding: 6px 5px 1px;
+    border-radius: 5px;
+}
+
+header nav a.login:hover {
+    background-color: white;
+    color: #F15F36;
+}
+
+#navigation {
+    font-family: BebasNeue;
+    text-transform: uppercase;
+    color: white;
+    font-size: 20px;
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+/*FOOTER*/
+
+footer {
+    margin-top: 48px;
+}
+
+footer .container-fluid > div {
+    background-image: url('../img/bg-main.png');
+}
+
+footer .container {
+    background-color: white;
+}
+
+footer .container > div {
+    background-color: #E7663C;
+    min-height: 260px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+footer h4 {
+    color: white;
+    font-size: 25px;
+    margin: 34px 0 22px;
+    letter-spacing: 1px;
+}
+
+footer p {
+    color: white;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.about_jetro {
+    padding-left: 27px;
+}
+
+.twitter_widget {
+    padding: 0 20px 0 37px;
+}
+
+.twitter_widget span {
+    opacity: 0.6;
+}
+
+.contact_us {
+    padding: 0 10px;
+}
+
+.contact_us img:hover {
+    opacity: 0.6;
+}
+
+/*media queries*/
+
+@media only screen and (max-width: 840px) {
+
+    .contact_us .soc_icons img {
+        width: 25px;
+        height: 25px;
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+
+    body footer .container {
+        background-color: #E7663C;
+    }
+
+    footer .container > div {
+        height: auto;
+    }
+
+    .about_jetro, .twitter_widget, .contact_us {
+        padding: 5px 15px;
+    }
+
+}
+
+@media only screen and (max-width: 839px) {
+
+    header nav {
+        display: none;
+        background-color: #E7663C;
+        color: white;
+        position: absolute;
+        right: 15px;
+        top: 35px;
+        z-index: 5;
+    }
+
+    header nav a, header nav a.active, header nav a.loginButton {
+        display: block;
+        color: white;
+        margin-left: 5px;
+        padding: 3px 25px;
+    }
+
+    header nav a:first-child {
+        margin-left: 5px;
+    }
+
+    header nav a.active {
+        text-decoration: underline;
+    }
+
+    header nav a:hover {
+        text-decoration: underline;
+        color: white;
+    }
+
+    #navigation {
+        display: inline-block;
+    }
+
+}
+

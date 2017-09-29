@@ -1,0 +1,49 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/contact.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/aside.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/messages-operations.js"></script>') %>
+
+
+<main>
+    <%- partial('partials/title', {title: 'contact us'}) %>
+    <div class="container">
+        <div class="col-md-9 co-sm-12">
+            <div class="row">
+                <section>
+                    <div class="map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2449.0134760785186!2d-106.65064396771633!3d52.134076358040765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5304f6c5775b9fbf%3A0x17c4fde3d395b816!2sKinsmen+Park%2C+Saskatoon!5e0!3m2!1suk!2sua!4v1487315753635"
+                                frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div>
+                        <div class="contact_form">
+                            <form name="contact_form" id="contact_form">
+                                <input type="text" placeholder="FIRST NAME" name="firstName" required>
+                                <input type="text" placeholder="LAST NAME" name="lastName" required>
+                                <input type="email" placeholder="EMAILADDRESS" name="email" required>
+                                <textarea placeholder="MESSAGE" required name="message"></textarea>
+                                <input type="submit" value="submit">
+                            </form>
+                        </div>
+                        <div class="details">
+                            <div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est non iure vel alias
+                                    labore nam nobis esse at rem, tempore perferendis, impedit, repellat asperiores
+                                    labore consectetur.</p>
+                            </div>
+                            <div>
+                                <p><span>Best PSD Freebies</span><br>328 Ave C<br>Saskatoon, SK<br>S7R 2V9</p>
+                            </div>
+                            <div>
+                                <p>t: (888) 842 - 8356<br>f: (888) 452 - 9257<br>e: info@psdfreebies.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <%- partial('partials/aside') %>
+        </div>
+    </div>
+</main>

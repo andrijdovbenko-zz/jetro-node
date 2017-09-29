@@ -1,0 +1,63 @@
+/*recent_works*/
+
+.recent_works {
+    margin-top: 31px;
+}
+
+.recent_works a:hover {
+    text-decoration: none;
+}
+
+.recent_works h4 {
+    color: #F15F36;
+    font-size: 24px;
+    background-image: url('../img/line.png');
+    background-repeat: repeat-x;
+    background-position: center;
+}
+
+.recent_works h4 span {
+    background-color: white;
+    display: inline-block;
+    width: 132px;
+}
+
+.items {
+    margin-top: 21px;
+}
+
+.recent_works .item {
+    outline: 1px solid #b6b6b6;
+    padding-bottom: 3px;
+}
+
+.recent_works .item > div {
+    height: 180px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.recent_works .item > div > div {
+    width: 100%;
+    height: 100%;
+}
+
+.recent_works .item > div > div:hover {
+    background-image: url('../img/item_hover.png');
+    background-position: center;
+    cursor: pointer;
+}
+
+.recent_works .item h5 {
+    color: #b6b6b6;
+    font-size: 22px;
+    margin: 10px 14px 0 14px;
+}
+
+.recent_works .item p {
+    color: #F15F36;
+    font-family: BebasNeue;
+    line-height: 15px;
+    margin-left: 14px;
+}

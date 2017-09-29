@@ -1,0 +1,88 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/admin.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/file-reader.js"></script>') %>
+<% block('scripts', '<script src="/js/portfolio-operations.js"></script>') %>
+
+<main>
+    <%- partial('partials/title', {title: 'admin panel'}) %>
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="/admin">posts</a>
+            <a href="/admin/portfolio" class="active">portfolio</a>
+            <a href="/admin/messages">messages</a>
+            <a href="/admin/users">Users</a>
+        </nav>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <article>
+                    <h2>Portfolio</h2>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPortfolioItem">
+                        Add new portfolio item
+                    </button>
+                    </br></br>
+                    <div class="panel panel-default">
+                        <table class="table">
+                            <tr>
+                                <th>№</th>
+                                <th>Icon</th>
+                                <th>Header</th>
+                                <th>Type</th>
+                                <th></th>
+                            </tr>
+                            <% for(var i = 0; i < portfolioItems.length; i++){ %>
+                            <tr>
+                                <td><%- i + 1 %></td>
+                                <td><img class="icon" src="<%- portfolioItems[i].img %>" alt=""></td>
+                                <td><%- portfolioItems[i].header %></td>
+                                <td><%- portfolioItems[i].type %></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                        <button type="button"
+                                                class="btn btn-danger"
+                                                value="<%- portfolioItems[i]._id %>"
+                                                onclick="deletePortfolioItem(this.value)">Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal Add Portfolio Item -->
+<div class="modal fade" id="addPortfolioItem" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Add Portfolio Item</h4>
+            </div>
+            <form id="send_portfolio_item_form">
+                <div class="modal-body">
+                    <input type="text" placeholder="Header" name="header" id="header">
+                    <p>Select post type:
+                        <select name="type">
+                            <option selected value="print">Print</option>
+                            <option value="web">Web</option>
+                            <option value="photoshop">Photoshop</option>
+                            <option value="wordpress">Wordpress</option>
+                        </select>
+                    </p>
+                    <input type="file" name="img">
+                    <textarea name="text"></textarea>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="sendPortfolioItem">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

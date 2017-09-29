@@ -1,0 +1,61 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/admin.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/messages-operations.js"></script>') %>
+
+<main>
+    <%- partial('partials/title', {title: 'admin panel'}) %>
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="/admin">posts</a>
+            <a href="/admin/portfolio">portfolio</a>
+            <a href="/admin/messages" class="active">messages</a>
+            <a href="/admin/users">Users</a>
+        </nav>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <article>
+                    <h2>Messages</h2>
+                    <div class="panel panel-default">
+                        <table class="table">
+                            <tr>
+                                <th>№</th>
+                                <th>Sender</th>
+                                <th>Text</th>
+                            </tr>
+                            <% for(var i = 0; i < messages.length; i++){ %>
+                            <tr>
+                                <td><%- i + 1 %></td>
+                                <td><b><%- messages[i].firstName + ' ' + messages[i].lastName %></b></a><br>
+                                    <small>(<%- messages[i].email %>)</small>
+                                </td>
+                                <td>
+                                    <% if (messages[i].message.length > 75) { %>
+                                    <small><%- messages[i].message.slice(0, 75) %>...</small>
+                                    <% } else { %>
+                                    <small><%- messages[i].message %></small>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <div class="btn-group-xs btn-group-vertical" role="group" aria-label="...">
+                                        <button type="button"
+                                                class="btn btn-warning"
+                                                value="<%- messages[i]._id %>"
+                                                onclick="readMore(this.value)">Read
+                                        </button>
+                                        <button type="button"
+                                                class="btn btn-danger"
+                                                value="<%- messages[i]._id %>"
+                                                onclick="deleteMessage(this.value)">Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,100 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/admin.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/post-type-form.js"></script>') %>
+<% block('scripts', '<script src="/js/blog-operations.js"></script>') %>
+<% block('scripts', '<script src="/js/file-reader.js"></script>') %>
+
+<main>
+    <%- partial('partials/title', {title: 'admin panel'}) %>
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="/admin" class="active">posts</a>
+            <a href="/admin/portfolio">portfolio</a>
+            <a href="/admin/messages">messages</a>
+            <a href="/admin/users">Users</a>
+        </nav>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <article>
+                    <h2>Posts</h2>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addPost">Add new
+                        post
+                    </button>
+                    </br></br>
+                    <div class="panel panel-default">
+                        <table class="table">
+                            <tr>
+                                <th>№</th>
+                                <th>Header</th>
+                                <th>Type</th>
+                                <th></th>
+                            </tr>
+                            <% for(var i = 0; i < posts.length; i++){ %>
+                            <tr>
+                                <td><%- i + 1 %></td>
+                                <td><%- posts[i].header %></td>
+                                <td><%- posts[i].post_type %></td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                                        <button type="button"
+                                                class="btn btn-danger"
+                                                value="<%- posts[i]._id %>"
+                                                onclick="deletePost(this.value)">Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+
+<!-- Modal Add Post -->
+<div class="modal fade" id="addPost" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Add Post</h4>
+            </div>
+            <form id="send_post_form">
+                <div class="modal-body">
+                    <p>Select post type:
+                        <select id="post_type" name="post_type">
+                            <option selected value="image">Image</option>
+                            <option value="video">Video</option>
+                            <option value="link">Link</option>
+                            <option value="quote">Quote</option>
+                            <option value="gallery">Gallery</option>
+                        </select>
+                    </p>
+                    <div id="form_content">
+                        <input type="text" placeholder="Header" name="header" id="header">
+                        <input type="file" name="img">
+                        <div>
+                            <p>Choose tags:</p>
+                            <div>
+                                <input type="checkbox" id="website" name="tags" value="website">
+                                <label for="website">Website</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="design" name="tags" value="design">
+                                <label for="design">Design</label>
+                            </div>
+                        </div>
+                        <textarea name="text"></textarea>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" id="sendPost">Add</button>
+            </div>
+        </div>
+    </div>
+</div>

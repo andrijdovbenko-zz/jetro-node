@@ -1,0 +1,51 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/admin.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+
+<main>
+    <%- partial('partials/title', {title: 'admin panel'}) %>
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="/admin">posts</a>
+            <a href="/admin/portfolio">portfolio</a>
+            <a href="/admin/messages">messages</a>
+            <a href="/admin/users" class="active">Users</a>
+        </nav>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <article>
+                    <h2>Users</h2>
+                    <div class="panel panel-default">
+                        <table class="table">
+                            <tr>
+                                <th>№</th>
+                                <th>Login</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Admin</th>
+                            </tr>
+                            <% for(var i = 0; i < users.length; i++){ %>
+                            <tr>
+                                <td><%- i + 1 %></td>
+                                <td><%= users[i].login %></td>
+                                <td><b><%- users[i].firstName + ' ' + users[i].lastName %></b></td>
+                                <td><%= users[i].email %></td>
+                                <td><%= users[i].isAdmin %></td>
+                                <td>
+                                    <div class="btn-group-xs btn-group-vertical" role="group" aria-label="...">
+                                        <button type="button"
+                                                class="btn btn-danger"
+                                                value="<%- users[i]._id %>"
+                                                onclick="deleteMessage(this.value)">Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                        </table>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</main>

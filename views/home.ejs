@@ -1,0 +1,82 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="css/owl.carousel/owl.carousel.css" rel="stylesheet" >') %>
+<% block('stylesheets', '<link href="css/owl.carousel/owl.theme.default.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="css/home.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="js/slider.js"></script>') %>
+<% block('scripts', '<script src="js/owl.carousel.js"></script>') %>
+
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div id="slider">
+                <div class="container">
+                    <div class="owl-carousel">
+                        <% for (var i = 0; i < portfolio_items.length; i++) { %>
+                        <div class="slide" style="background-image: url(<%- portfolio_items[i].img %>)">
+                            <div class="desription">
+                                <h2><%- portfolio_items[i].header %></h2>
+                                <p><%- portfolio_items[i].text.slice(0, 200) + '...' %></p>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                    <div class="thumbnails">
+                        <div class="row">
+                            <% for (var i = portfolio_items.length - 1; i > portfolio_items.length - 7; i--) { %>
+                            <div class="col-md-2 col-sm-4 col-xs-4">
+                                <div class="thumbnail ">
+                                    <div style="background-image: url(<%- portfolio_items[i].img %>)"></div>
+                                </div>
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="features">
+                <div class="container">
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="clearfix">
+                                <img src="img/portfolio_icon.png" alt="portfolio" class="feature_icon">
+                                <h4>Check out my latest<br>portfolio items</h4>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sunt reiciendis cum vero
+                                obcaecati officia quas nesciunt fugiat eius, culpa reprehenderit esse nulla, aliquam
+                                voluptas iste magnam voluptatum molestias dicta. Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Ipsam sint harum praesentium expedita iure</p>
+                            <button class="btn btn-warning">more</button>
+                        </div>
+
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="clearfix">
+                            <img src="img/work_icon.png" alt="work_icon" class="feature_icon">
+                            <h4>Offer Top Notch Quality <br>Work &#38; Services</h4>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sunt reiciendis cum vero
+                            obcaecati officia quas nesciunt fugiat eius, culpa reprehenderit esse nulla, aliquam
+                            voluptas iste magnam voluptatum molestias dicta.
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam sint harum praesentium
+                            expedita iure</p>
+                        <button class="btn btn-warning">more</button>
+                    </div>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="clearfix">
+                            <img src="img/connected_icon.png" alt="connected_icon" class="feature_icon">
+                            <h4>Follow Me on Twitter,<br> Facebook &#38; Pinterest</h4>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem sunt reiciendis cum vero
+                            obcaecati officia quas nesciunt fugiat eius, culpa reprehenderit esse nulla, aliquam
+                            voluptas iste magnam voluptatum molestias dicta. Lorem ipsum dolor sit amet, consectetur
+                            adipisicing elit. Ipsam sint harum praesentium expedita iure</p>
+                        <button class="btn btn-warning">more</button>
+                    </div>
+                </div>
+            </div>
+            <%- partial('partials/recent-works') %>
+        </div>
+    </div>
+</main>
+

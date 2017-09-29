@@ -1,0 +1,35 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="css/portfolio.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="css/title.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="css/aside.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="js/portfolio-filter.js"></script>') %>
+
+<main>
+    <%- partial('partials/title', {title: 'portfolio'}) %>
+    <div class="container">
+        <div class="filter">
+            <span class="active" data-filter="all">all</span>
+            <span data-filter="print">print</span>
+            <span data-filter="web">web</span>
+            <span data-filter="photoshop">photoshop</span>
+            <span data-filter="wordpress">wordpress</span>
+        </div>
+        <div class="works">
+            <div class="row">
+                <% for (var i = 0; i < portfolio_items.length; i++) { %>
+                <div class="col-md-3 col-sm-4 col-xs-6">
+                    <a href="/portfolio/<%= portfolio_items[i]._id %>">
+                        <div class="item" data-filter="<%= portfolio_items[i].type %>">
+                            <div style="background-image: url(<%= portfolio_items[i].img %>);">
+                                <div></div>
+                            </div>
+                            <h5><%= portfolio_items[i].header %></h5>
+                            <p><%= portfolio_items[i].date %></p>
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</main>

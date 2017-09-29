@@ -1,0 +1,32 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/admin.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/messages-operations.js"></script>') %>
+
+<main>
+    <%- partial('partials/title', {title: 'admin panel'}) %>
+    <div class="container">
+        <nav class="admin-nav">
+            <a href="/admin">posts</a>
+            <a href="/admin/portfolio">portfolio</a>
+            <a href="/admin/messages" class="active">messages</a>
+        </nav>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <article>
+                    <h2>
+                        Message from <%= message.firstName %> <%= message.lastName %>
+                        <br>
+                        <small><a href="mailto:<%= message.email %>"><%= message.email %></a></small>
+                    </h2>
+                    <p><%= message.message %></p>
+                </article>
+                <button type="button"
+                        class="btn btn-danger"
+                        value="<%- message._id %>"
+                        onclick="deleteMessage(this.value)">Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</main>

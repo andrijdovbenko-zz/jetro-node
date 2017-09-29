@@ -1,0 +1,63 @@
+aside h4 {
+    color: #F15F36;
+    font-size: 17px;
+    margin: 0 0 13px 0;
+    background-image: url('../img/line_blog.png');
+    background-repeat: repeat-x;
+    background-position: center;
+}
+
+aside h4 span {
+    background-color: white;
+    display: inline-block;
+    padding-right: 15px;
+}
+
+aside p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 13px;
+    color: grey;
+}
+
+aside p a {
+    color: grey;
+    line-height: 15px;
+}
+
+aside > div > div {
+    margin-top: 30px;
+}
+
+aside > div > div:first-child {
+    margin-top: 0;
+}
+
+aside p a:hover {
+    color: #F15F36;
+}
+
+.photo_gallery > div {
+    margin-left: -7px;
+}
+
+.photo_gallery .photo {
+    height: 47px;
+    background-color: #f3af9d;
+    box-sizing: border-box;
+    border: 1px solid #F15F36;
+    margin: 0 0 6px 6px;
+    width: 47px;
+    display: inline-block;
+}
+
+/*Media query*/
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 800px) {
+
+    main aside {
+        margin-top: 40px;
+    }
+
+}

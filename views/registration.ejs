@@ -1,0 +1,77 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/registration.js"></script>') %>
+
+
+<main>
+    <%- partial('partials/title', {title: 'Registration page'}) %>
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+            <div class="row">
+                <div class="registration_form">
+                    <form name="registration_form" id="registration_form">
+                        <div class="form-group">
+                            <label for="login">Login</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="login"
+                                   id="login"
+                                   placeholder="dartweider"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="firstName"
+                                   id="firstName"
+                                   placeholder="Vasil"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last name</label>
+                            <input type="text"
+                                   class="form-control"
+                                   name="lastName"
+                                   id="lastName"
+                                   placeholder="Pupkin"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Email</label>
+                            <input type="email"
+                                   class="form-control"
+                                   name="email"
+                                   id="email"
+                                   placeholder="vpupkin@mail.com"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password"
+                                   class="form-control"
+                                   name="password"
+                                   id="password"
+                                   placeholder="Please enter your password"
+                                   pattern=".{5,10}"
+                                   title="5 to 10 characters"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duplicated-password">Confirm password</label>
+                            <input type="password"
+                                   class="form-control"
+                                   name="duplicatedPassword"
+                                   id="duplicated-password"
+                                   placeholder="Please enter password again"
+                                   required>
+                        </div>
+
+                        <button type="submit" class="btn btn-danger">Regitration</button>
+                        <button type="reset" class="btn btn-warning">Reset</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

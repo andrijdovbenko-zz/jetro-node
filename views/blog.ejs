@@ -1,0 +1,45 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/blog.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/aside.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/owl.carousel/owl.carousel.css" rel="stylesheet" >') %>
+<% block('stylesheets', '<link href="/css/owl.carousel/owl.theme.default.css" rel="stylesheet">') %>
+<% block('scripts', '<script src="/js/slider.js"></script>') %>
+<% block('scripts', '<script src="/js/owl.carousel.js"></script>') %>
+
+<main>
+    <%- partial('partials/title', {title: 'blog'}) %>
+    <div class="container">
+        <div class="col-md-9 co-sm-12">
+            <div class="row">
+                <section>
+                    <% for (var i = 0; i < posts.length; i++) {
+                    if (posts[i].post_type === "image"){ %>
+                    <%- partial('post_templates/image', {post: posts[i]}) %>
+                    <% } else if (posts[i].post_type === "quote"){ %>
+                    <%- partial('post_templates/quote', {post: posts[i]}) %>
+                    <% } else if (posts[i].post_type === "video"){ %>
+                    <%- partial('post_templates/video', {post: posts[i]}) %>
+                    <% } else if (posts[i].post_type === "link"){ %>
+                    <%- partial('post_templates/link', {post: posts[i]}) %>
+                    <% } else if (posts[i].post_type === "gallery"){ %>
+                    <%- partial('post_templates/gallery', {post: posts[i]}) %>
+                    <% }
+                    } %>
+                </section>
+                <% if (maxPages !== 1 ) { %>
+                <div class="pages">
+                    <a href="/blog"><span>1</span></a>
+                    <% for (var i = 2; i <= maxPages; i++) { %>
+                    <a href="/blog?page=<%= i %>"><span><%= i %></span></a>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <%- partial('partials/aside') %>
+        </div>
+    </div>
+</main>
+

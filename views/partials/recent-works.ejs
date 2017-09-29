@@ -1,0 +1,24 @@
+<% block('stylesheets', '<link href="/css/recent_works.css" rel="stylesheet">') %>
+
+<div class="recent_works">
+    <div class="container">
+        <h4><span>Recent  Works</span></h4>
+        <div class="items">
+            <div class="row">
+                <% for (var i = 0; i < 4; i++) { %>
+                <div class="col-md-3 col-sm-3 col-xs-6">
+                    <a href="/portfolio/<%= portfolio_items[i]._id %>">
+                        <div class="item" data-filter="<%= portfolio_items[i].type %>">
+                            <div style="background-image: url(<%= portfolio_items[i].img %>);">
+                                <div></div>
+                            </div>
+                            <h5><%= portfolio_items[i].header %></h5>
+                            <p><%= portfolio_items[i].date %></p>
+                        </div>
+                    </a>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

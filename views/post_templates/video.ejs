@@ -1,0 +1,26 @@
+<article class="post-video">
+    <div>
+        <iframe src="<%= post.videoSrc %>" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div>
+        <div class="article">
+            <h3><a href="/blog/<%= post._id %>"><%= post.header %></a></h3>
+            <p><%= post.text %></p>
+        </div>
+        <div class="stats">
+            <div>
+                <h5>date</h5>
+                <p><%= post.date %>2</p>
+            </div>
+            <div>
+                <h5>tags</h5>
+                <p><%= post.tags %></p>
+            </div>
+            <div>
+                <h5>comments</h5>
+                <p><%= post.comments.length %></p>
+            </div>
+        </div>
+    </div>
+    <div class="post_icon"></div>
+</article>

@@ -1,0 +1,15 @@
+<% layout('/layout/page') %>
+<% block('stylesheets', '<link href="/css/portfolio_item.css" rel="stylesheet">') %>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
+
+
+<main>
+    <%- partial('partials/title', {title: selectedItem.header}) %>
+    <div class="container">
+        <div class="item_details">
+            <div class="main_img" style="background-image: url(<%= selectedItem.img %>)"></div>
+            <p><%= selectedItem.text %></p>
+        </div>
+        <%- partial('partials/recent-works') %>
+    </div>
+</main>
