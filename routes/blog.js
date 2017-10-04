@@ -14,7 +14,7 @@ router.get('/', function (req, res, next) {
     let end = 5;
     let maxPages = Math.ceil(posts.length / postsPerPage);
     let urlParsed = url.parse(req.url, true);
-    if(urlParsed.query.page){
+    if (urlParsed.query.page) {
       let page = urlParsed.query.page;
       start = (page - 1) * postsPerPage;
       end = page * postsPerPage;
@@ -23,6 +23,7 @@ router.get('/', function (req, res, next) {
       posts: posts.slice(start, end),
       isAdmin: req.session.isAdmin,
       isLogged: req.session.isLogged,
+      userName: req.session.userName,
       maxPages: maxPages
     };
     res.render('blog', data);
@@ -38,12 +39,11 @@ router.get('/:id', function (req, res, next) {
       post: post,
       isAdmin: req.session.isAdmin,
       isLogged: req.session.isLogged,
+      userName: req.session.userName
     };
     res.render('single-post', data);
   });
 });
-
-module.exports = router;
 
 router.post('/:id', function (req, res, next) {
   let now = new Date();
@@ -57,18 +57,19 @@ router.post('/:id', function (req, res, next) {
   let data = req.body;
   data.sender = req.session.userName;
   data.date = date;
-  console.log(data);
   db.posts.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, post) => {
     if (err) {
       render('error', err);
     }
     let updPost = post;
     updPost.comments.unshift(data);
-    db.posts.update({_id: mongojs.ObjectId(req.params.id)}, updPost, {}, function (err, post) {
-      if(err){
+    db.posts.update({_id: mongojs.ObjectId(req.params.id)}, updPost, {}, function (err, result) {
+      if (err) {
         res.send(err);
       }
-      res.sendStatus(200);
+      if (result) {
+        res.sendStatus(200);
+      }
     });
   });
 });

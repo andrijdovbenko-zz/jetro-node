@@ -1,6 +1,5 @@
 $(document.forms['registration_form']).on('submit', function () {
   let form = $(this);
-  console.log(form);
   $.ajax({
     url: window.location.pathname,
     method: "POST",
@@ -8,17 +7,17 @@ $(document.forms['registration_form']).on('submit', function () {
     statusCode: {
       200: function () {
         alert('You are registered, please log in.');
-        window.location.href = '/login'
+        window.location.href = '/login';
       },
       400: function (jqXHR) {
-        let error = jqXHR.responseText;
-        alert('Error: ' + error + '. Some problems with password');
-        form[0].reset();
+        let error = JSON.parse(jqXHR.responseText);
+        $('small.error').html('');
+        $(`input#${error.field} + small.error`).html('Error: ' + error.text + '. Try again.');
       },
-      409: function () {
-        alert('User with such a login is already registered');
-        form[0].reset();
-        window.location.reload();
+      409: function (jqXHR) {
+        let error = JSON.parse(jqXHR.responseText);
+        $('small.error').html('');
+        $(`input#${error.field} + small.error`).html('Error: ' + error.text + '. Try again.');
       }
     }
   });

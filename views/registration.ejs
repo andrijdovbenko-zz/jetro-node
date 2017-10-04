@@ -2,6 +2,11 @@
 <% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
 <% block('scripts', '<script src="/js/registration.js"></script>') %>
 
+<style>
+    small.error {
+        color: red;
+    }
+</style>
 
 <main>
     <%- partial('partials/title', {title: 'Registration page'}) %>
@@ -18,6 +23,7 @@
                                    id="login"
                                    placeholder="dartweider"
                                    required>
+                            <small class="form-text text-muted error"></small>
                         </div>
                         <div class="form-group">
                             <label for="firstName">First name</label>
@@ -65,6 +71,7 @@
                                    id="duplicated-password"
                                    placeholder="Please enter password again"
                                    required>
+                            <small class="form-text text-muted error"></small>
                         </div>
 
                         <button type="submit" class="btn btn-danger">Regitration</button>

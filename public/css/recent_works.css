@@ -44,7 +44,7 @@
 }
 
 .recent_works .item > div > div:hover {
-    background-image: url('../img/item_hover.png');
+    background-image: url('../img/item-hover.png');
     background-position: center;
     cursor: pointer;
 }

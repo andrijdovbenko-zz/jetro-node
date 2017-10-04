@@ -27,12 +27,12 @@ router.post('/', function (req, res, next) {
       render('error', err);
     }
     if (user) {
-      if (user.password === cryptoPassword && user.isAdmin === true) {
+      if (user.password === cryptoPassword && user.isAdmin) {
         req.session.isAdmin = true;
         req.session.isLogged = true;
         req.session.userName = user.firstName + ' ' + user.lastName;
         res.sendStatus(200);
-      } else if (user.password === cryptoPassword && user.isAdmin === false){
+      } else if (user.password === cryptoPassword) {
         req.session.isAdmin = false;
         req.session.isLogged = true;
         req.session.userName = user.firstName + ' ' + user.lastName;
@@ -41,11 +41,13 @@ router.post('/', function (req, res, next) {
         req.session.isLogged = false;
         req.session.isAdmin = false;
         req.session.userName = '';
-        res.sendStatus(403);
+        res.statusCode = 403;
+        res.json({"field": "password", "text": "Wrong password"})
       }
     } else {
       req.session.isAdmin = false;
-      res.sendStatus(403);
+      res.statusCode = 403;
+      res.json({"field": "login", "text": "The user with this login doesn't exist"})
     }
   })
 

@@ -1,7 +1,9 @@
 #addPost input,
 #addPost textarea,
 #addPortfolioItem input,
-#addPortfolioItem textarea {
+#addPortfolioItem textarea,
+#editPortfolioItem input,
+#editPortfolioItem textarea{
     width: 100%;
     margin-bottom: 10px;
 }

@@ -1,4 +1,3 @@
-
 let sendPostButton = document.getElementById('sendPost');
 sendPostButton.addEventListener('click', function () {
   let now = new Date();
@@ -20,7 +19,7 @@ sendPostButton.addEventListener('click', function () {
     console.log(key.name, key.value);
     if (key.name === 'tags') {
       if (key.checked) {
-        sendDate.tags.push(key.value)
+        sendDate.tags.push(key.value);
       }
     } else if (key.name === 'img') {
       sendDate.img = imgPath;
@@ -35,11 +34,10 @@ sendPostButton.addEventListener('click', function () {
     data: {data: JSON.stringify(sendDate)},
     statusCode: {
       200: function () {
-        window.location.reload()
+        window.location.reload();
       }
     }
-  })
-
+  });
 });
 
 function deletePost(id) {
@@ -51,9 +49,13 @@ function deletePost(id) {
       data: {id: id, type: 'post'},
       statusCode: {
         200: function () {
-          window.location.reload()
+          window.location.reload();
         }
       }
-    })
+    });
   }
+}
+
+function readMore(id) {
+  window.location.href = "/admin/blog/" + id;
 }

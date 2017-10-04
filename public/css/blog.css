@@ -3,7 +3,7 @@ main section {
 }
 
 main section > article {
-    background-image: url('../img/line_blog.png');
+    background-image: url('../img/line-blog.png');
     background-position: bottom;
     background-repeat: repeat-x;
     padding-bottom: 48px;
@@ -222,14 +222,14 @@ article .post_icon {
     text-decoration: underline;
 }
 
-.comments h4{
+.comments h4 {
     color: #F15F36;
     font-size: 19px;
     margin: 0;
     font-stretch: ultra-condensed;
 }
 
-.comments span{
+.comments span {
     color: #F15F36;
     text-transform: capitalize;
 }
@@ -245,6 +245,7 @@ article .post_icon {
 .single-comment {
     margin-bottom: 20px;
 }
+
 /*pagination*/
 
 .pages {

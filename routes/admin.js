@@ -12,30 +12,63 @@ router.get('/', function (req, res, next) {
       let data = {
         posts: posts,
         isAdmin: req.session.isAdmin,
-        isLogged: req.session.isLogged
+        isLogged: req.session.isLogged,
+        userName: req.session.userName
       };
       res.render('admin-blog', data);
     });
   } else {
-    res.render('access-denied', {isAdmin: req.session.isAdmin, isLogged: req.session.isLogged});
+    let data = {
+      isAdmin: req.session.isAdmin,
+      isLogged: req.session.isLogged
+    };
+    res.render('access-denied', data);
+  }
+});
+
+router.get('/blog/:id', function (req, res, next) {
+  if (req.session.isAdmin) {
+    db.posts.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, post) => {
+      if (err) {
+        render('error', err);
+      }
+      let data = {
+        post: post,
+        isAdmin: req.session.isAdmin,
+        isLogged: req.session.isLogged,
+        userName: req.session.userName
+      };
+      res.render('single-post', data);
+    });
+  } else {
+    let data = {
+      isAdmin: req.session.isAdmin,
+      isLogged: req.session.isLogged
+    };
+    res.render('access-denied', data);
   }
 });
 
 router.get('/portfolio', function (req, res, next) {
   if (req.session.isAdmin) {
-    db.portfolio_items.find(function (err, portfolio_items) {
+    db.portfolioItems.find(function (err, portfolioItems) {
       if (err) {
         render('error', err);
       }
       let data = {
-        portfolioItems: portfolio_items,
+        portfolioItems: portfolioItems,
         isAdmin: req.session.isAdmin,
-        isLogged: req.session.isLogged
+        isLogged: req.session.isLogged,
+        userName: req.session.userName
       };
       res.render('admin-portfolio', data);
     });
   } else {
-    res.render('access-denied', {isAdmin: req.session.isAdmin, isLogged: req.session.isLogged});
+    let data = {
+      isAdmin: req.session.isAdmin,
+      isLogged: req.session.isLogged
+    };
+    res.render('access-denied', data);
   }
 });
 
@@ -48,12 +81,17 @@ router.get('/messages', function (req, res, next) {
       let data = {
         messages: messages,
         isAdmin: req.session.isAdmin,
-        isLogged: req.session.isLogged
+        isLogged: req.session.isLogged,
+        userName: req.session.userName
       };
       res.render('admin-messages', data);
     });
   } else {
-    res.render('access-denied', {isAdmin: req.session.isAdmin, isLogged: req.session.isLogged});
+    let data = {
+      isAdmin: req.session.isAdmin,
+      isLogged: req.session.isLogged
+    };
+    res.render('access-denied', data);
   }
 });
 
@@ -66,12 +104,17 @@ router.get('/messages/:id', function (req, res, next) {
       let data = {
         message: message,
         isAdmin: req.session.isAdmin,
-        isLogged: req.session.isLogged
+        isLogged: req.session.isLogged,
+        userName: req.session.userName
       };
       res.render('single-message', data);
     });
   } else {
-    res.render('access-denied', {isAdmin: req.session.isAdmin, isLogged: req.session.isLogged});
+    let data = {
+      isAdmin: req.session.isAdmin,
+      isLogged: req.session.isLogged
+    };
+    res.render('access-denied', data);
   }
 });
 
@@ -84,12 +127,17 @@ router.get('/users', function (req, res, next) {
       let data = {
         users: users,
         isAdmin: req.session.isAdmin,
-        isLogged: req.session.isLogged
+        isLogged: req.session.isLogged,
+        userName: req.session.userName
       };
       res.render('admin-users', data);
     });
   } else {
-    res.render('access-denied', {isAdmin: req.session.isAdmin, isLogged: req.session.isLogged});
+    let data = {
+      isAdmin: req.session.isAdmin,
+      isLogged: req.session.isLogged
+    };
+    res.render('access-denied', data);
   }
 });
 
@@ -105,14 +153,14 @@ router.post('/', function (req, res, next) {
       }
     })
   } else if (data.form_id === 'send_portfolio_item_form') {
-    db.portfolio_items.save(data, (err, newPortfolioItems) => {
+    db.portfolioItems.save(data, (err, newPortfolioItems) => {
       if (err) {
         res.send(err);
       }
       if (newPortfolioItems) {
         res.sendStatus(200);
       }
-    })
+    });
   }
 });
 
@@ -121,36 +169,42 @@ router.delete('/', function (req, res, next) {
   if (req.body.type === 'post') {
     db.posts.remove({_id: mongojs.ObjectId(req.body.id)}, (err, result) => {
       if (err) {
-        console.log(err);
         res.send(err);
       }
-      console.log(result);
       if (result) {
         res.sendStatus(200);
       }
-    })
+    });
   } else if (req.body.type === 'portfolioItem') {
-    db.portfolio_items.remove({_id: mongojs.ObjectId(req.body.id)}, (err, result) => {
+    db.portfolioItems.remove({_id: mongojs.ObjectId(req.body.id)}, (err, result) => {
       if (err) {
-        console.log(err);
         res.send(err);
       }
-      console.log(result);
       if (result) {
         res.sendStatus(200);
       }
-    })
+    });
   } else if (req.body.type === 'message') {
     db.messages.remove({_id: mongojs.ObjectId(req.body.id)}, (err, result) => {
       if (err) {
-        console.log(err);
         res.send(err);
       }
-      console.log(result);
       if (result) {
         res.sendStatus(200);
       }
-    })
+    });
+  } else if (req.body.type === 'comment') {
+    db.posts.findOne({_id: mongojs.ObjectId(req.body.id)}, (err, post) => {
+      post.comments.splice(+req.body.commentId, 1);
+      db.posts.update({_id: mongojs.ObjectId(req.body.id)}, post, {}, function (err, result) {
+        if (err) {
+          res.send(err);
+        }
+        if (result) {
+          res.sendStatus(200);
+        }
+      });
+    });
   }
 });
 

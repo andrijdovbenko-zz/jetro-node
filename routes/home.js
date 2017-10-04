@@ -3,20 +3,18 @@ let router = express.Router();
 let db = require('../db-connect');
 
 router.get('/', function (req, res, next) {
-  db.portfolio_items.find((err, portfolio_items) => {
+  db.portfolioItems.find((err, portfolioItems) => {
     if (err) {
       render('error', err);
     }
     let data = {
-      portfolio_items: portfolio_items,
+      portfolioItems: portfolioItems,
       isAdmin: req.session.isAdmin,
-      isLogged: req.session.isLogged
+      isLogged: req.session.isLogged,
+      userName: req.session.userName
     };
     res.render('home', data);
   });
 });
 
 module.exports = router;
-
-
-

@@ -10,7 +10,7 @@ function deletePortfolioItem(id) {
           window.location.reload()
         }
       }
-    })
+    });
   }
 }
 
@@ -43,9 +43,9 @@ sendPortfolioItemButton.addEventListener('click', function () {
     data: {data: JSON.stringify(sendDate)},
     statusCode: {
       200: function () {
-        window.location.reload()
+        window.location.reload();
       }
     }
-  })
+  });
 
 });

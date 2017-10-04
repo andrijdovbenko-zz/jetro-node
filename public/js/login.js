@@ -13,11 +13,12 @@ $(document.forms['login_form']).on('submit', function () {
         window.location.href = "/";
       },
       403: function (jqXHR) {
-        let error = jqXHR.responseText;
-        $('small.error').html('Error: ' + error + '. Try again. Wrong login or password');
+        let error = JSON.parse(jqXHR.responseText);
+        $(`input#${error.field} + small.error`).html('Error: ' + error.text + '. Try again.');
         form[0].reset();
       }
     }
   });
+
   return false;
 });

@@ -16,15 +16,15 @@
         </div>
         <div class="works">
             <div class="row">
-                <% for (var i = 0; i < portfolio_items.length; i++) { %>
+                <% for (var i = 0; i < portfolioItems.length; i++) { %>
                 <div class="col-md-3 col-sm-4 col-xs-6">
-                    <a href="/portfolio/<%= portfolio_items[i]._id %>">
-                        <div class="item" data-filter="<%= portfolio_items[i].type %>">
-                            <div style="background-image: url(<%= portfolio_items[i].img %>);">
+                    <a href="/portfolio/<%= portfolioItems[i]._id %>">
+                        <div class="item" data-filter="<%= portfolioItems[i].type %>">
+                            <div style="background-image: url(<%= portfolioItems[i].img %>);">
                                 <div></div>
                             </div>
-                            <h5><%= portfolio_items[i].header %></h5>
-                            <p><%= portfolio_items[i].date %></p>
+                            <h5><%= portfolioItems[i].header %></h5>
+                            <p><%= portfolioItems[i].date %></p>
                         </div>
                     </a>
                 </div>

@@ -1,21 +1,22 @@
 <% layout('/layout/page') %>
-<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">')%>
+<% block('stylesheets', '<link href="/css/title.css" rel="stylesheet">') %>
 
 <style>
-    h2{
+    h2 {
         color: #F15F36;;
     }
+
     img[alt="access denied"] {
         width: 70%;
     }
 </style>
 
 <main>
-    <%- partial('partials/title', {title: 'access denied'})%>
+    <%- partial('partials/title', {title: 'access denied'}) %>
     <div class="container">
         <div class="col-md-12">
             <h2>Sorry, but you do not have access to this page</h2>
-            <img src="/img/access_denied.jpeg" alt="access denied">
+            <img src="/img/access-denied.jpeg" alt="access denied">
         </div>
     </div>
 </main>

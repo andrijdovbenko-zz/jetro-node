@@ -1,7 +1,7 @@
 {
-  "mLab":{
+  "mLab": {
     "dbuser": "andrijdovbenko",
     "dbpassword": "andrijdovbenko"
   },
-  "cryptoKey" : "TheCryptoKey911"
+  "cryptoKey": "TheCryptoKey911"
 }

@@ -1,5 +1,9 @@
 {
   "name": "Jetro-Node",
-  "description": "Test project",
-  "keywords": ["node", "express", "static"]
+  "description": "Test Node.js project",
+  "keywords": [
+    "node",
+    "express",
+    "static"
+  ]
 }

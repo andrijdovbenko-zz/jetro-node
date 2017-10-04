@@ -6,7 +6,7 @@
 <% block('stylesheets', '<link href="/css/owl.carousel/owl.theme.default.css" rel="stylesheet">') %>
 <% block('scripts', '<script src="/js/slider.js"></script>') %>
 <% block('scripts', '<script src="/js/owl.carousel.js"></script>') %>
-<% block('scripts', '<script src="/js/add-comment.js"></script>') %>
+<% block('scripts', '<script src="/js/comment-operations.js"></script>') %>
 
 
 <main>
@@ -39,6 +39,13 @@
                             <h4><%= post.comments[i].sender %></h4>
                             <p><span>date: </span><%= post.comments[i].date %></p>
                             <p><%= post.comments[i].text %></p>
+                            <% if (isAdmin) { %>
+                            <button type="button"
+                                    class="btn btn-danger"
+                                    value="<%- i %>"
+                                    onclick="deleteComment(this.value)">X
+                            </button>
+                            <% } %>
                         </div>
                         <% } %>
                     </div>

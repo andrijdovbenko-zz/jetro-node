@@ -30,13 +30,18 @@
                                 <td><%= users[i].login %></td>
                                 <td><b><%- users[i].firstName + ' ' + users[i].lastName %></b></td>
                                 <td><%= users[i].email %></td>
-                                <td><%= users[i].isAdmin %></td>
+                                <td><input type="checkbox" <% if (users[i].isAdmin) { %>checked
+                                            <% } %>
+                                           disabled></td>
                                 <td>
                                     <div class="btn-group-xs btn-group-vertical" role="group" aria-label="...">
                                         <button type="button"
                                                 class="btn btn-danger"
                                                 value="<%- users[i]._id %>"
-                                                onclick="deleteMessage(this.value)">Delete
+                                                onclick="deleteMessage(this.value)"
+                                                <% if (users[i].isAdmin) { %>disabled
+                                                <% } %>
+                                        >Delete
                                         </button>
                                     </div>
                                 </td>

@@ -7,7 +7,8 @@ let db = require('../db-connect');
 router.get('/', function (req, res, next) {
   let data = {
     isAdmin: req.session.isAdmin,
-    isLogged: req.session.isLogged
+    isLogged: req.session.isLogged,
+    userName: req.session.userName
   };
   res.render('registration', data);
 });
@@ -15,7 +16,8 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   let newUser = req.body;
   if (newUser.password !== newUser.duplicatedPassword) {
-    res.sendStatus(400);
+    res.statusCode = 400;
+    res.json({"field": "duplicated-password", "text": "Passwords should be the same"})
   } else {
     newUser.password = crypto.createCipher('aes-256-ctr', keys.cryptoKey).update(newUser.password, 'utf-8', 'hex');
     newUser.isAdmin = false;
@@ -32,11 +34,12 @@ router.post('/', function (req, res, next) {
           if (newUser) {
             res.sendStatus(200);
           }
-        })
+        });
       } else {
-        res.sendStatus(409);
+        res.statusCode = 409;
+        res.json({"field": "login", "text": " User with such login already exists"})
       }
-    })
+    });
   }
 });
 

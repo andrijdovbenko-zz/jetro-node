@@ -38,6 +38,13 @@ header h1 span:last-child {
     color: #F5B19C;
 }
 
+header h1 small.user-name {
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+}
+
 header nav {
     float: right;
     font-family: BebasNeue;
@@ -203,6 +210,14 @@ footer p {
 
     #navigation {
         display: inline-block;
+    }
+
+
+    header h1 small.user-name {
+        font-size: 20px;
+        position: absolute;
+        top: 25px;
+        left: 100px;
     }
 
 }

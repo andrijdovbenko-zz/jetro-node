@@ -1,8 +1,5 @@
 $(document.forms['contact_form']).on('submit', function () {
   let form = $(this);
-  /*$('.error', form).html('');
-  $(':submit', form).button('загрузка');*/
-  console.log(form.serialize());
   $.ajax({
     usl: "/contact",
     method: "POST",
@@ -14,7 +11,7 @@ $(document.forms['contact_form']).on('submit', function () {
       },
       500: function (jqXHR) {
         let error = jqXHR.responseText;
-        alert(`Сталась помилка: ${error}`)
+        alert(`Сталась помилка: ${error}`);
       }
     }
   });
@@ -30,11 +27,11 @@ function deleteMessage(id) {
       data: {id: id, type: 'message'},
       statusCode: {
         200: function () {
-          alert('Message is deleted :)')
+          alert('Message is deleted :)');
           window.location.href = "/admin/messages";
         }
       }
-    })
+    });
   }
 }
 
