@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="$PROJECT_DIR$/../jetro-node/bin/www" working-dir="$PROJECT_DIR$/../jetro-node">
+  <configuration default="false" name="bin/www" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="$PROJECT_DIR$/www" working-dir="$PROJECT_DIR$">
     <envs>
       <env name="DEBUG" value="untitled:*" />
     </envs>
