@@ -5,7 +5,7 @@
 <% block('stylesheets', '<link href="/css/owl.carousel/owl.carousel.css" rel="stylesheet" >') %>
 <% block('stylesheets', '<link href="/css/owl.carousel/owl.theme.default.css" rel="stylesheet">') %>
 <% block('scripts', '<script src="/js/slider.js"></script>') %>
-<% block('scripts', '<script src="/js/owl.carousel.js"></script>') %>
+<% block('scripts', '<script src="/js/lib/owl.carousel.js"></script>') %>
 <% block('scripts', '<script src="/js/comment-operations.js"></script>') %>
 
 
@@ -29,7 +29,7 @@
                     <div class="comments">
                         <h3>Comments:</h3>
                         <% if(isLogged) { %>
-                        <form name="comment_form" id="comment_form">
+                        <form name="comment-form" id="comment-form">
                             <textarea placeholder="COMMENT..." required name="text"></textarea>
                             <input type="submit" value="add comment">
                         </form>

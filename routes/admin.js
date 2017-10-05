@@ -3,11 +3,11 @@ let router = express.Router();
 let mongojs = require('mongojs');
 let db = require('../db-connect');
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   if (req.session.isAdmin) {
-    db.posts.find(function (err, posts) {
+    db.posts.find(function(err, posts) {
       if (err) {
-        render('error', err);
+        res.render('error', err);
       }
       let data = {
         posts: posts,
@@ -26,11 +26,11 @@ router.get('/', function (req, res, next) {
   }
 });
 
-router.get('/blog/:id', function (req, res, next) {
+router.get('/blog/:id', function(req, res, next) {
   if (req.session.isAdmin) {
     db.posts.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, post) => {
       if (err) {
-        render('error', err);
+        res.render('error', err);
       }
       let data = {
         post: post,
@@ -49,11 +49,11 @@ router.get('/blog/:id', function (req, res, next) {
   }
 });
 
-router.get('/portfolio', function (req, res, next) {
+router.get('/portfolio', function(req, res, next) {
   if (req.session.isAdmin) {
-    db.portfolioItems.find(function (err, portfolioItems) {
+    db.portfolioItems.find(function(err, portfolioItems) {
       if (err) {
-        render('error', err);
+        res.render('error', err);
       }
       let data = {
         portfolioItems: portfolioItems,
@@ -72,11 +72,11 @@ router.get('/portfolio', function (req, res, next) {
   }
 });
 
-router.get('/messages', function (req, res, next) {
+router.get('/messages', function(req, res, next) {
   if (req.session.isAdmin) {
-    db.messages.find(function (err, messages) {
+    db.messages.find(function(err, messages) {
       if (err) {
-        render('error', err);
+        res.render('error', err);
       }
       let data = {
         messages: messages,
@@ -95,11 +95,11 @@ router.get('/messages', function (req, res, next) {
   }
 });
 
-router.get('/messages/:id', function (req, res, next) {
+router.get('/messages/:id', function(req, res, next) {
   if (req.session.isAdmin) {
     db.messages.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, message) => {
       if (err) {
-        render('error', err);
+        res.render('error', err);
       }
       let data = {
         message: message,
@@ -118,11 +118,11 @@ router.get('/messages/:id', function (req, res, next) {
   }
 });
 
-router.get('/users', function (req, res, next) {
+router.get('/users', function(req, res, next) {
   if (req.session.isAdmin) {
-    db.users.find(function (err, users) {
+    db.users.find(function(err, users) {
       if (err) {
-        render('error', err);
+        res.render('error', err);
       }
       let data = {
         users: users,
@@ -141,9 +141,9 @@ router.get('/users', function (req, res, next) {
   }
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', function(req, res, next) {
   let data = JSON.parse(req.body.data);
-  if (data.form_id === 'send_post_form') {
+  if (data.formId === 'send-post-form') {
     db.posts.save(data, (err, newPost) => {
       if (err) {
         res.send(err);
@@ -151,8 +151,8 @@ router.post('/', function (req, res, next) {
       if (newPost) {
         res.sendStatus(200);
       }
-    })
-  } else if (data.form_id === 'send_portfolio_item_form') {
+    });
+  } else if (data.formId === 'send-portfolio-item-form') {
     db.portfolioItems.save(data, (err, newPortfolioItems) => {
       if (err) {
         res.send(err);
@@ -164,7 +164,7 @@ router.post('/', function (req, res, next) {
   }
 });
 
-router.delete('/', function (req, res, next) {
+router.delete('/', function(req, res, next) {
   console.log(req.body);
   if (req.body.type === 'post') {
     db.posts.remove({_id: mongojs.ObjectId(req.body.id)}, (err, result) => {
@@ -196,7 +196,7 @@ router.delete('/', function (req, res, next) {
   } else if (req.body.type === 'comment') {
     db.posts.findOne({_id: mongojs.ObjectId(req.body.id)}, (err, post) => {
       post.comments.splice(+req.body.commentId, 1);
-      db.posts.update({_id: mongojs.ObjectId(req.body.id)}, post, {}, function (err, result) {
+      db.posts.update({_id: mongojs.ObjectId(req.body.id)}, post, {}, function(err, result) {
         if (err) {
           res.send(err);
         }

@@ -180,17 +180,17 @@ article .post_icon {
 
 /*comments*/
 
-#comment_form textarea {
+#comment-form textarea {
     width: 100%;
     padding: 10px 13px;
     height: 75px;
 }
 
-#comment_form {
+#comment-form {
     margin-bottom: 20px;
 }
 
-#comment_form textarea {
+#comment-form textarea {
     font-family: BebasNeue;
     font-size: 16px;
     color: #E8603C;
@@ -198,12 +198,12 @@ article .post_icon {
     background-color: #FCFCFC;
 }
 
-#comment_form textarea:focus {
+#comment-form textarea:focus {
     border: 1px solid #E47309;
     background-color: white;
 }
 
-#comment_form input[type="submit"] {
+#comment-form input[type="submit"] {
     background-color: #E8603C;
     color: white;
     font-family: BebasNeue;
@@ -213,7 +213,7 @@ article .post_icon {
     font-size: 16px;
 }
 
-#comment_form input[type="submit"]:hover {
+#comment-form input[type="submit"]:hover {
     background-color: #EEA236;
 }
 

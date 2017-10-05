@@ -2,10 +2,10 @@ let express = require('express');
 let router = express.Router();
 let db = require('../db-connect');
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   db.portfolioItems.find((err, portfolioItems) => {
     if (err) {
-      render('error', err);
+      res.render('error', err);
     }
     let data = {
       portfolioItems: portfolioItems,

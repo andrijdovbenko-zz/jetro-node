@@ -1,5 +1,9 @@
 let formContent = document.getElementById('form_content');
 let linkPostElement = document.createElement('div');
+
+let postTypeElement = document.getElementById('post_type');
+postTypeElement.addEventListener('change', selectPostTypeTemplate);
+
 linkPostElement.innerHTML = `
   <input type="text" placeholder="Header" name="header" id="header">
   <input type="text" placeholder="Link" name="link">
@@ -61,8 +65,8 @@ galleryPostElement.innerHTML = `
   </div>
   <textarea name="text"></textarea>
 `;
-let postTypeElement = document.getElementById('post_type');
-postTypeElement.addEventListener('change', function () {
+
+function selectPostTypeTemplate() {
   let postType = postTypeElement.value;
   console.log(postType);
   if (postType === 'link') {
@@ -81,4 +85,4 @@ postTypeElement.addEventListener('change', function () {
     formContent.innerHTML = '';
     formContent.prepend(imagePostElement);
   }
-});
+}

@@ -1,0 +1,10 @@
+{
+  "excludeFiles": [
+    "node_modules/**",
+    "public/js/lib/**"
+  ],
+  "preset": "google",
+  "requireCamelCaseOrUpperCaseIdentifiers": true,
+  "maxErrors": null,
+  "maximumLineLength": null
+}

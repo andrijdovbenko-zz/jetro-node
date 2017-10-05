@@ -4,7 +4,7 @@ let crypto = require('crypto');
 let keys = require('../keys.json');
 let db = require('../db-connect');
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   let data = {
     isAdmin: req.session.isAdmin,
     isLogged: req.session.isLogged,
@@ -13,18 +13,18 @@ router.get('/', function (req, res, next) {
   res.render('registration', data);
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', function(req, res, next) {
   let newUser = req.body;
   if (newUser.password !== newUser.duplicatedPassword) {
     res.statusCode = 400;
-    res.json({"field": "duplicated-password", "text": "Passwords should be the same"})
+    res.json({'field': 'duplicated-password', 'text': 'Passwords should be the same'});
   } else {
     newUser.password = crypto.createCipher('aes-256-ctr', keys.cryptoKey).update(newUser.password, 'utf-8', 'hex');
     newUser.isAdmin = false;
     delete newUser.duplicatedPassword;
     db.users.findOne({login: newUser.login}, (err, user) => {
       if (err) {
-        render('error', err);
+        res.render('error', err);
       }
       if (user === null) {
         db.users.save(newUser, (err, newUser) => {
@@ -37,7 +37,7 @@ router.post('/', function (req, res, next) {
         });
       } else {
         res.statusCode = 409;
-        res.json({"field": "login", "text": " User with such login already exists"})
+        res.json({'field': 'login', 'text': ' User with such login already exists'});
       }
     });
   }

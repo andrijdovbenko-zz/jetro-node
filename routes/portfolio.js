@@ -3,10 +3,10 @@ let router = express.Router();
 let db = require('../db-connect');
 let mongojs = require('mongojs');
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   db.portfolioItems.find((err, portfolioItems) => {
     if (err) {
-      render('error', err);
+      res.render('error', err);
     }
     let data = {
       portfolioItems: portfolioItems,
@@ -18,10 +18,10 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.get('/:id', function (req, res, next) {
+router.get('/:id', function(req, res, next) {
   db.portfolioItems.find((err, portfolioItems) => {
     if (err) {
-      render('error', err);
+      res.render('error', err);
     }
     let selectedItem;
 

@@ -4,10 +4,10 @@ let db = require('../db-connect');
 let url = require('url');
 let mongojs = require('mongojs');
 
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   db.posts.find((err, posts) => {
     if (err) {
-      render('error', err);
+      res.render('error', err);
     }
     let postsPerPage = 5;
     let start = 0;
@@ -30,10 +30,10 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.get('/:id', function (req, res, next) {
+router.get('/:id', function(req, res, next) {
   db.posts.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, post) => {
     if (err) {
-      render('error', err);
+      res.render('error', err);
     }
     let data = {
       post: post,
@@ -45,25 +45,25 @@ router.get('/:id', function (req, res, next) {
   });
 });
 
-router.post('/:id', function (req, res, next) {
+router.post('/:id', function(req, res, next) {
   let now = new Date();
   let options = {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
   };
-  let date = now.toLocaleString("en-US", options);
+  let date = now.toLocaleString('en-US', options);
 
   let data = req.body;
   data.sender = req.session.userName;
   data.date = date;
   db.posts.findOne({_id: mongojs.ObjectId(req.params.id)}, (err, post) => {
     if (err) {
-      render('error', err);
+      res.render('error', err);
     }
     let updPost = post;
     updPost.comments.unshift(data);
-    db.posts.update({_id: mongojs.ObjectId(req.params.id)}, updPost, {}, function (err, result) {
+    db.posts.update({_id: mongojs.ObjectId(req.params.id)}, updPost, {}, function(err, result) {
       if (err) {
         res.send(err);
       }

@@ -1,5 +1,5 @@
 let sendPostButton = document.getElementById('sendPost');
-sendPostButton.addEventListener('click', function () {
+sendPostButton.addEventListener('click', function() {
   let now = new Date();
 
   let options = {
@@ -8,14 +8,14 @@ sendPostButton.addEventListener('click', function () {
     day: 'numeric',
   };
 
-  let date = now.toLocaleString("en-US", options);
+  let date = now.toLocaleString('en-US', options);
   let sendDate = {
     tags: [],
-    form_id: 'send_post_form',
+    formId: 'send-post-form',
     comments: [],
     date: date
   };
-  for (let key of document.forms['send_post_form'].elements) {
+  for (let key of document.forms['send-post-form'].elements) {
     console.log(key.name, key.value);
     if (key.name === 'tags') {
       if (key.checked) {
@@ -33,7 +33,11 @@ sendPostButton.addEventListener('click', function () {
     url: '/admin',
     data: {data: JSON.stringify(sendDate)},
     statusCode: {
-      200: function () {
+      200: function() {
+        window.location.reload();
+      },
+      413: function(jqXHR) {
+        alert('Try another image' + jqXHR.statusText);
         window.location.reload();
       }
     }
@@ -48,7 +52,7 @@ function deletePost(id) {
       url: 'http://localhost:3000/admin',
       data: {id: id, type: 'post'},
       statusCode: {
-        200: function () {
+        200: function() {
           window.location.reload();
         }
       }
@@ -57,5 +61,5 @@ function deletePost(id) {
 }
 
 function readMore(id) {
-  window.location.href = "/admin/blog/" + id;
+  window.location.href = '/admin/blog/' + id;
 }

@@ -1,14 +1,14 @@
-$(document.forms['comment_form']).on('submit', function () {
+$(document.forms['comment-form']).on('submit', function() {
   let form = $(this);
   $.ajax({
     url: window.location.pathname,
-    method: "POST",
+    method: 'POST',
     data: form.serialize(),
     statusCode: {
-      200: function () {
+      200: function() {
         window.location.reload();
       },
-      403: function (jqXHR) {
+      403: function(jqXHR) {
         let error = jqXHR.responseText;
         alert('Error: ' + error);
         form[0].reset();
@@ -27,7 +27,7 @@ function deleteComment(commentId) {
       url: 'http://localhost:3000/admin',
       data: {id: postId, type: 'comment', commentId: commentId},
       statusCode: {
-        200: function () {
+        200: function() {
           alert('Comment is deleted :)');
           window.location.reload();
         }

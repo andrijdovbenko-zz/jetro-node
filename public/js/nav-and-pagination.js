@@ -1,5 +1,5 @@
 /*navigation on small device*/
-$('#navigation').click(function () {
+$('#navigation').click(function() {
   $('header nav').slideToggle('fast');
 });
 
@@ -9,16 +9,16 @@ let queryParam = window.location.search;
 /*active page css styling*/
 function addActiveClassToNav(path) {
   let navPath;
-  let sleshPosition = path.indexOf('/', 1);
-  if (sleshPosition > 0) {
-    navPath = path.slice(0, sleshPosition);
+  let slashPosition = path.indexOf('/', 1);
+  if (slashPosition > 0) {
+    navPath = path.slice(0, slashPosition);
   } else {
     navPath = path;
   }
-  $('header a[href="' + navPath + '"]').addClass('active');
+  $(`header a[href="${navPath}"]`).addClass('active');
 }
 
 addActiveClassToNav(path);
 
 /*active pagination page css styling*/
-$('.pages a[href="' + path + queryParam + '"]').find('span').addClass('active');
+$(`.pages a[href="${path}${queryParam}"]`).find('span').addClass('active');
